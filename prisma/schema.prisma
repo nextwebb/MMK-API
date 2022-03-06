@@ -7,10 +7,17 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id        Int      @id  @default(autoincrement())
-  name      String
-  age       Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model account {
+  id          Int            @id @default(autoincrement())
+  auth_id     String
+  username    String
+  phoneNumber phone_number[]
+}
+
+model phone_number {
+  id        Int     @id @default(autoincrement())
+  number    String
+  accountId Int     @unique @map(name: "account_id")
+  account   account @relation(fields: [accountId], references: [id])
+
 }

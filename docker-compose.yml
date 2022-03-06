@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   # make sure implements retry connectDB 5 times each 5s
   dbhost:
@@ -14,12 +13,22 @@ services:
     ports:
       - '5432:5432'
 
+  redisCache:
+      image: redis:6.2-alpine
+      container_name: xchangerfx_redis
+      environment:
+        - ALLOW_EMPTY_PASSWORD=yes
+      ports:
+        - 6379:6379
+      volumes:
+        - ./redis:/db
   expressapp:
     # use my own custom image
-    image: rifandani/express:latest
+    image: nextwebb/express:latest
     # make sure it starts postgres first
     depends_on:
-      - db
+      - dbhost
+      - redisCache
     ports:
       - '8000:8000'
 

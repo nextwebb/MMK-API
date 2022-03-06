@@ -5,11 +5,11 @@ import {
 } from 'express';
 
 // GET /
-export const getHome = (
+export const getStatus = (
   req: Request,
   res: Response
   // next: NextFunction
 ): void => {
   res.status(200);
-  res.json({ success: true, msg: 'Welcome to /home' });
+  res.json({ up: true, env: process.env.NODE_ENV });
 };
