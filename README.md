@@ -79,3 +79,6 @@ Connection: keep-alive
 
 Hello world
 ```
+
+SQL file created successfully, let’s import the file using docker, use the below commands.
+```docker container exec -i mmk_storage psql -U postgres postgres < schema.sql```
