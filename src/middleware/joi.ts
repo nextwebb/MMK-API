@@ -1,4 +1,4 @@
-import Joi from 'Joi';
+import Joi from 'joi';
 
 export const inBoundSmsSchema = Joi.object().keys({
   from: Joi.string().min(6).max(16).required(),
